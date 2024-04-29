@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home } from './components/pages/Home';
-import { About } from './components/pages/About';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import GlobalStyle from "./styles/globalStyle"
 
 export const AppRoutes = () => {
   return (
@@ -10,6 +11,7 @@ export const AppRoutes = () => {
         <Route path='/about' element={<About />} />
         <Route path='*' element={<Navigate to='/home' />} />
       </Routes>
+      <GlobalStyle />
     </BrowserRouter>
   )
 }
