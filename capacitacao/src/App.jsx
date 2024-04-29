@@ -1,18 +1,5 @@
-import { useState } from 'react';
+import { AppRoutes } from "./routes"
 
-function App() {
-  const [isActive, setIsActive] = useState(false);
-
-  let handleChangeIsActive = () => {
-    setIsActive(!isActive);
-  }
-
-  return (
-    <>
-      {isActive ? <div>Está ativo</div> : <div>Não está ativo</div>}
-      <button type='button' onClick={handleChangeIsActive}>{isActive ? "Desativar" : "Ativar"}</button>
-    </>
-  )
+export function App() {
+  return <AppRoutes />
 }
-
-export default App
