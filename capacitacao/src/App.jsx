@@ -1,33 +1,18 @@
-import { useEffect, useState } from 'react';
-import Button from './components/Button';
-
-// hooks são a forma de trabalhar com estado e ciclo de vida, sem trabalhar com
-// classes, somente com funções.
-
-// Effect hook -> permite executar efeitos colaterais em componentes funcionais.
-// São similares ao componentDidMount, componentDidUpdate, componentDidUnmount.
+import { useState } from 'react';
 
 function App() {
-  let [count, setCount] = useState(0);
+  const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
-    alert("Iniciou!");
-  }, []);
-
-  useEffect(() => {
-    alert(`Clicou ${count} vezes`);
-  }, [count]);
-
-  function addCount() {
-    setCount(count + 1);
+  let handleChangeIsActive = () => {
+    setIsActive(!isActive);
   }
 
   return (
     <>
-      <h1>{count}</h1>
-      <Button text="Clique aqui" fx={() => addCount()}/>
+      {isActive ? <div>Está ativo</div> : <div>Não está ativo</div>}
+      <button type='button' onClick={handleChangeIsActive}>{isActive ? "Desativar" : "Ativar"}</button>
     </>
   )
 }
 
-export default App;
+export default App
