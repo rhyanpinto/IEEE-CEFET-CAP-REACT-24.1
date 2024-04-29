@@ -1,32 +1,26 @@
-import { useState } from 'react';
-import Button from './components/Button';
-
-// Ciclo de vida
-// Mounting: Sempre que renderizarmos um componente, o estado do componente tem que ser instanciado
-// unmounting: Quando o componente sair de tela, o estado do componente tem que ser limpado
-
-// Para trabalhar com ciclo de vida, precisamos usar classe ou hooks (nas funções).
-
-// normalmente, as alterações nos valores de variáveis modificados realizados em uma função
-// "desaparecem" quando sai da função que a modificou.
-
-// Estados são uma maneira de "preservar" valores entre as chamadas de funções.
-// useState é a forma de escrever estados sem usar classe.
+import { useEffect, useState } from 'react';
 
 function App() {
-  let count = 0;
-  // let [count, setCount] = useState(0);
-
-  function addCount() {
-    count += 1;
-    alert(count);
-    // setCount(count + 1);
+  //Criamos um useState como vimos anteriormente
+  const [inputText, setInputText] = useState("");
+  
+  //Criamos uma função que sempre que receber um evento ela muda o valor de setInputText fazendo com que o valor seja salvo
+  function handleChange(event) {
+    setInputText(event.target.value);
   }
+  
+  useEffect(() => {
+    console.log(inputText);
+  }, [inputText]);
 
   return (
     <>
-      <h1>{count}</h1>
-      <Button text="Clique aqui" fx={() => addCount()}/>
+      <p>{inputText}</p>
+      {/* Temos um input que recebe o que está em inputText e que executa a função onChange. Essa função é executada sempre que percebe qualquer tipo de mudança
+      E como ela recebe a função handleChange, sempre que ela perceber alguma mudança handleChange é executada e salva essa mudança no setInputText */}
+      <input type="text" value={inputText} onChange={handleChange} />  
+      <input type="text" onChange={handleChange} />  
+      <button type='button' onClick={() => alert(inputText)}>Clique aqui</button>
     </>
   )
 }
